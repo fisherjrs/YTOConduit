@@ -1,0 +1,12 @@
+
+spring:
+    main:
+        show-banner: true
+    #profiles:
+       # active: dev
+server:
+    port: 9000
+
+application-state:
+    on-network: false
+    datasource-type: xml
