@@ -8,6 +8,7 @@ import java.util.List;
 import org.apache.http.client.utils.URIBuilder;
 import org.springframework.stereotype.Service;
 
+import com.jostens.ytoconduit.model.YTOCategoryDefinition;
 import com.jostens.ytoconduit.model.YTODesignDefinition;
 import com.jostens.ytoconduit.model.YTOImageDefinition;
 
@@ -30,20 +31,36 @@ public YTODesignDefinition getDesignDefinition(Long designId) {
 		imageDef.setImageName("Barny");
 		imageDef.setUrl("http://testyearbookavenue.jostens.com/services/getimage?locator=TRY1-9-5005416743&quality=thumbnail");
 		
+		List<YTOImageDefinition> imageList1 = new ArrayList<YTOImageDefinition>();
+		imageList1.add(imageDef);
+		
+		YTOCategoryDefinition categoryDef1 = new YTOCategoryDefinition();
+		categoryDef1.setCategoryId(Long.valueOf(349000));
+		categoryDef1.setCategoryName("We are the world");
+		categoryDef1.setImageDefinition(imageList1);
+		
 		YTOImageDefinition imageDef2 = new YTOImageDefinition();
 		imageDef2.setIndex(1);
 		imageDef2.setImageId(Long.valueOf(11111111));
 		imageDef2.setImageName("Wilma");
 		imageDef2.setUrl("http://testyearbookavenue.jostens.com/services/getimage?locator=TRY1-9-5005416743&quality=thumbnail");
 		
-		List<YTOImageDefinition> imageList = new ArrayList<YTOImageDefinition>();
-		imageList.add(imageDef);
-		imageList.add(imageDef2);
+		List<YTOImageDefinition> imageList2 = new ArrayList<YTOImageDefinition>();
+		imageList2.add(imageDef2);
+		
+		YTOCategoryDefinition categoryDef2 = new YTOCategoryDefinition();
+		categoryDef2.setCategoryId(Long.valueOf(34901));
+		categoryDef2.setCategoryName("The 99 percent");
+		categoryDef2.setImageDefinition(imageList1);
+		
+		List<YTOCategoryDefinition> categoryList = new ArrayList<YTOCategoryDefinition>();
+		categoryList.add(categoryDef1);
+		categoryList.add(categoryDef2);
 		
 		YTODesignDefinition designDef = new YTODesignDefinition();
 		designDef.setIndex(0);
 		designDef.setDesignId(designId);
-		designDef.setImageDefinition(imageList);
+		designDef.setCategoryDefinition(categoryList);
 		
 		/*
 		List<YTOImageDefinition> imageDefList = conduitDao.getImageDefinitions(designId);

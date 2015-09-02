@@ -4,13 +4,18 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 public class YTODesignDefinition implements Serializable {
 
 	private static final long serialVersionUID = -5573669467452311555L;
 	
+	@JsonView(View.DefinitionSummary.class)
 	private int index;
+	@JsonView(View.DefinitionSummary.class)
 	private Long designId;
-	private List<YTOImageDefinition> imageDefinition;
+	@JsonView(View.DefinitionSummary.class)
+	private List<YTOCategoryDefinition> categoryDefinition;
 	
 	public YTODesignDefinition() {
 		//for JIBX
@@ -36,12 +41,12 @@ public class YTODesignDefinition implements Serializable {
 		this.designId = designId;
 	}
 
-	public List<YTOImageDefinition> getImageDefinition() {
-		return imageDefinition;
+	public List<YTOCategoryDefinition> getCategoryDefinition() {
+		return categoryDefinition;
 	}
 
-	public void setImageDefinition(List<YTOImageDefinition> imageDefinition) {
-		this.imageDefinition = imageDefinition;
+	public void setCategoryDefinition(List<YTOCategoryDefinition> categoryDefinition) {
+		this.categoryDefinition = categoryDefinition;
 	}
 
 

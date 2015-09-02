@@ -3,16 +3,25 @@ package com.jostens.ytoconduit.model;
 import java.io.Serializable;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 public class YTOImageDefinition implements Serializable {
 	
 	private static final long serialVersionUID = -3734695183680485787L;
 	
+	@JsonView(View.DefinitionSummary.class)
 	private int index;
+	@JsonView(View.DefinitionSummary.class)
 	private Long imageId;
+	@JsonView(View.DefinitionSummary.class)
 	private String guid;
+	@JsonView(View.DefinitionSummary.class)
 	private String url;
+	@JsonView(View.DefinitionSummary.class)
 	private String imageName;
+	@JsonView(View.DefinitionSummary.class)
 	private Long categoryId;
+	@JsonView(View.DefinitionSummary.class)
 	private String categoryName;
 	
 	public YTOImageDefinition() {

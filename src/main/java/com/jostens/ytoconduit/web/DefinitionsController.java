@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.jostens.config.YTOConfig;
+import com.jostens.ytoconduit.model.View;
 import com.jostens.ytoconduit.model.YTODesignDefinition;
 import com.jostens.ytoconduit.service.DefinitionsService;
 
@@ -43,10 +45,17 @@ public class DefinitionsController {
         model.addAttribute("name", name);
         return "greeting";
     }    
+	
+	@JsonView(View.DefinitionSummary.class)
+    @ResponseBody
+	@RequestMapping(value = "/getdesigndefinition.json")
+	public YTODesignDefinition getDesignDefinition(Model model, @RequestParam(required = true) String designId) {
+		return definitionsService.getDesignDefinition(Long.valueOf(designId));
+	}
     
     
     @ResponseBody
-	@RequestMapping(value = "/getClipartImageDefinition.json")
+	@RequestMapping(value = "/getclipartimagedefinition.json")
 	public Object getImageDefinition(Model model, @RequestParam(required = true) String designId) {
 
 		String jsonImageDefinition = "Get your clipart image definition here.";
