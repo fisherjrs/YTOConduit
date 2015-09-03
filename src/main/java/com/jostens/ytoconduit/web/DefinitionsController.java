@@ -1,5 +1,7 @@
 package com.jostens.ytoconduit.web;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.jostens.config.YTOConfig;
 import com.jostens.ytoconduit.model.View;
 import com.jostens.ytoconduit.model.YTODesignDefinition;
+import com.jostens.ytoconduit.model.YTOImageDefinition;
 import com.jostens.ytoconduit.service.DefinitionsService;
 
 @Controller
@@ -51,6 +54,16 @@ public class DefinitionsController {
 	@RequestMapping(value = "/getdesigndefinition.json")
 	public YTODesignDefinition getDesignDefinition(Model model, @RequestParam(required = true) String designId) {
 		return definitionsService.getDesignDefinition(Long.valueOf(designId));
+	}
+	
+	@JsonView(View.ImageList.class)
+	@ResponseBody
+	@RequestMapping("/getimagelist")
+	public List<YTOImageDefinition> getYTOImageList(
+				Model model, 
+				@RequestParam(required = true) String designId, 
+				@RequestParam(required = true) String categoryId) {
+		return definitionsService.getImageList(Long.valueOf(designId), Long.valueOf(categoryId));
 	}
     
     

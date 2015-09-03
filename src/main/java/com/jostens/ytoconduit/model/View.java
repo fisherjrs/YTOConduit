@@ -9,6 +9,7 @@ public class View {
 	public interface SummaryWithRecipients extends Summary {}
 	
 	public interface DefinitionSummary{}
+	public interface ImageList{}
 	
 
 }

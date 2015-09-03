@@ -9,19 +9,19 @@ public class YTOImageDefinition implements Serializable {
 	
 	private static final long serialVersionUID = -3734695183680485787L;
 	
-	@JsonView(View.DefinitionSummary.class)
+	@JsonView(View.ImageList.class)
 	private int index;
-	@JsonView(View.DefinitionSummary.class)
+	@JsonView(View.ImageList.class)
 	private Long imageId;
-	@JsonView(View.DefinitionSummary.class)
+	@JsonView(View.ImageList.class)
 	private String guid;
-	@JsonView(View.DefinitionSummary.class)
+	@JsonView(View.ImageList.class)
 	private String url;
-	@JsonView(View.DefinitionSummary.class)
+	@JsonView(View.ImageList.class)
 	private String imageName;
-	@JsonView(View.DefinitionSummary.class)
+	@JsonView(View.ImageList.class)
 	private Long categoryId;
-	@JsonView(View.DefinitionSummary.class)
+	@JsonView(View.ImageList.class)
 	private String categoryName;
 	
 	public YTOImageDefinition() {
