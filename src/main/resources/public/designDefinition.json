@@ -1,0 +1,13 @@
+{
+  "index" : 0,
+  "designId" : 9,
+  "categoryDefinition" : [ {
+    "categoryId" : 349000,
+    "categoryName" : "We are the world",
+    "imageDefinition" : null
+  }, {
+    "categoryId" : 34901,
+    "categoryName" : "The 99 percent",
+    "imageDefinition" : null
+  } ]
+}
