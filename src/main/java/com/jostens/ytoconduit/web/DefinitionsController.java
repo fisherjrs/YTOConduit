@@ -67,7 +67,7 @@ public class DefinitionsController {
     @ResponseBody
 	@RequestMapping(value = "/getdesigndefinitionoffline.json")
 	public FileSystemResource getDesignDefinitionOffline(Model model, @RequestParam(required = true) String designId) {
-    	FileSystemResource fsr = new FileSystemResource("C:/dev/workspaces/sts3.6.4/YTOConduit/src/main/resources/public/designDefinition.json");
+    	FileSystemResource fsr = new FileSystemResource("c:/dev/workspaces/sts.general/YTOConduit/src/main/resources/public/designDefinition.json");
 		return fsr;
 	}
 	
@@ -75,7 +75,7 @@ public class DefinitionsController {
 	@RequestMapping(value = "/getcategorydefinition.json")
 	public FileSystemResource getCategoryDefinition(Model model, @RequestParam(required = true) String designId) {
 		
-		FileSystemResource fsr = new FileSystemResource("C:/dev/workspaces/sts3.6.4/YTOConduit/src/main/resources/public/categories.json");
+		FileSystemResource fsr = new FileSystemResource("c:/dev/workspaces/sts.general/YTOConduit/src/main/resources/public/categories.json");
 		return fsr;
 		/*
 		JsonFactory jsonFactory = new JsonFactory();
