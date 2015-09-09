@@ -1,0 +1,37 @@
+{
+    "index": 0,
+    "designId":2,
+    "categoryList":[{
+      "id": 34901,
+      "categoryName": "1. dubloon",
+      "categoryList": []
+    }, {
+      "id": 2,
+      "categoryName": "2. moiré-vision",
+      "categoryList": [{
+        "id": 21,
+        "categoryName": "2.1. tofu-animation",
+        "categoryList": [{
+          "id": 211,
+          "categoryName": "2.1.1. spooky-giraffe",
+          "categoryList": []
+        }, {
+          "id": 212,
+          "categoryName": "2.1.2. bubble-burst",
+          "categoryList": []
+        }]
+      }, {
+        "id": 22,
+        "categoryName": "2.2. barehand-atomsplitting",
+        "categoryList": []
+      }]
+    }, {
+      "id": 3,
+      "categoryName": "3. unicorn-zapper",
+      "categoryList": []
+    }, {
+      "id": 4,
+      "categoryName": "4. romantic-transclusion",
+      "categoryList": []
+    }]
+}

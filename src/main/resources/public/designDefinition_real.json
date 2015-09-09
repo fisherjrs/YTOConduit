@@ -1,12 +1,11 @@
 {
     "index": 0,
     "designId": 9,
-    "categoryList": [
+    "categoryDefinition": [
         {
             "id": 349000,
-            "categoryName": "We are the world",
-            "categoryList": [],
-            "imageList": [
+            "title": "We are the world",
+            "imageDefinition": [
                 {
                     "id": "677324678",
                     "name": "PA-3844",
@@ -755,14 +754,12 @@
         },
         {
             "id": 34901,
-            "categoryName": "The 99 percent",
-            "categoryList": [],
-            "imageList": []
+            "title": "The 99 percent",
+            "imageDefinition": null
         },
         {
             "id": "5001056712",
-            "categoryName": "Inbox ReplayIt",
-            "categoryList": [],
+            "title": "Inbox ReplayIt",
             "categoryType": "INBOX",
             "empty": "N",
             "hiddenFlag": "false",
@@ -774,8 +771,7 @@
         },
         {
             "id": "5001056711",
-            "categoryName": "Inbox Staff",
-            "categoryList": [],
+            "title": "Inbox Staff",
             "categoryType": "INBOX",
             "empty": "N",
             "hiddenFlag": "false",
@@ -787,8 +783,7 @@
         },
         {
             "id": "5001056713",
-            "categoryName": "Portrait",
-            "categoryList": [],
+            "title": "Portrait",
             "categoryType": "PORTRAIT",
             "empty": "N",
             "hiddenFlag": "false",
@@ -798,8 +793,7 @@
         },
         {
             "id": "-10",
-            "categoryName": "My 2015 Images",
-            "categoryList": [],
+            "title": "My 2015 Images",
             "categoryType": "SWLY",
             "empty": "Y",
             "hiddenFlag": "false",
@@ -808,7 +802,7 @@
         },
         {
             "id": "5001073193",
-            "categoryName": "Activity",
+            "title": "Activity",
             "categoryType": "CUSTOMER",
             "empty": "Y",
             "hiddenFlag": "false",
@@ -817,11 +811,11 @@
             "activeImageCount": "0",
             "inactiveImageCount": "0",
             "replayitFlag": "false",
-            "categoryList": [
+            "categoryDefinition": [
                 {
                     "id": "5001118327",
                     "parentId": "5001073193",
-                    "categoryName": "08",
+                    "title": "08",
                     "categoryType": "CUSTOMER",
                     "empty": "N",
                     "hiddenFlag": "false",
@@ -834,7 +828,7 @@
                 {
                     "id": "5001118328",
                     "parentId": "5001073193",
-                    "categoryName": "10",
+                    "title": "10",
                     "categoryType": "CUSTOMER",
                     "empty": "N",
                     "hiddenFlag": "false",
@@ -847,7 +841,7 @@
                 {
                     "id": "5001073195",
                     "parentId": "5001073193",
-                    "categoryName": "Academics",
+                    "title": "Academics",
                     "categoryType": "CUSTOMER",
                     "empty": "N",
                     "hiddenFlag": "false",
@@ -860,7 +854,7 @@
                 {
                     "id": "5001073194",
                     "parentId": "5001073193",
-                    "categoryName": "Ads",
+                    "title": "Ads",
                     "categoryType": "CUSTOMER",
                     "empty": "Y",
                     "hiddenFlag": "false",
@@ -873,7 +867,7 @@
                 {
                     "id": "5001073196",
                     "parentId": "5001073193",
-                    "categoryName": "Clubs And Organizations",
+                    "title": "Clubs And Organizations",
                     "categoryType": "CUSTOMER",
                     "empty": "Y",
                     "hiddenFlag": "false",
@@ -886,7 +880,7 @@
                 {
                     "id": "5001073197",
                     "parentId": "5001073193",
-                    "categoryName": "Dances And Events",
+                    "title": "Dances And Events",
                     "categoryType": "CUSTOMER",
                     "empty": "Y",
                     "hiddenFlag": "false",
@@ -899,7 +893,7 @@
                 {
                     "id": "5001073198",
                     "parentId": "5001073193",
-                    "categoryName": "Sports",
+                    "title": "Sports",
                     "categoryType": "CUSTOMER",
                     "empty": "N",
                     "hiddenFlag": "false",
@@ -912,7 +906,7 @@
                 {
                     "id": "5001073199",
                     "parentId": "5001073193",
-                    "categoryName": "Student Life",
+                    "title": "Student Life",
                     "categoryType": "CUSTOMER",
                     "empty": "Y",
                     "hiddenFlag": "false",
@@ -925,7 +919,7 @@
                 {
                     "id": "5001118329",
                     "parentId": "5001073193",
-                    "categoryName": "valley",
+                    "title": "valley",
                     "categoryType": "CUSTOMER",
                     "empty": "N",
                     "hiddenFlag": "false",
@@ -938,7 +932,7 @@
                 {
                     "id": "5001118330",
                     "parentId": "5001073193",
-                    "categoryName": "yellow2",
+                    "title": "yellow2",
                     "categoryType": "CUSTOMER",
                     "empty": "N",
                     "hiddenFlag": "false",
@@ -952,20 +946,18 @@
         },
         {
             "id": "5001115811",
-            "categoryName": "Clipart",
-            "categoryList": [],
+            "title": "Clipart",
             "categoryType": "CLIPART",
             "empty": "N",
             "hiddenFlag": "false",
             "swlyFlagflag": "false",
             "flowableFlag": "false",
             "replayitFlag": "false",
-            "categoryList": [
+            "categoryDefinition": [
               {
                 "id": "5001115813",
                 "parentId": "5001115811",
-                "categoryName": "Academics",
-                "categoryList": [],
+                "title": "Academics",
                 "categoryType": "CLIPART",
                 "empty": "N",
                 "hiddenFlag": "false",
@@ -978,8 +970,7 @@
           {
             "id": "5001115814",
             "parentId": "5001115811",
-            "categoryName": "Arts & Music",
-            "categoryList": [],
+            "title": "Arts & Music",
             "categoryType": "CLIPART",
             "empty": "N",
             "hiddenFlag": "false",
@@ -992,8 +983,7 @@
           {
             "id": "5001115815",
             "parentId": "5001115811",
-            "categoryName": "Autographs",
-            "categoryList": [],
+            "title": "Autographs",
             "categoryType": "CLIPART",
             "empty": "N",
             "hiddenFlag": "false",
@@ -1006,8 +996,7 @@
           {
             "id": "5001115816",
             "parentId": "5001115811",
-            "categoryName": "Backgrounds",
-            "categoryList": [],
+            "title": "Backgrounds",
             "categoryType": "CLIPART",
             "empty": "N",
             "hiddenFlag": "false",
@@ -1020,8 +1009,7 @@
           {
             "id": "5001115847",
             "parentId": "5001115811",
-            "categoryName": "Banners & Ribbons",
-            "categoryList": [],
+            "title": "Banners & Ribbons",
             "categoryType": "CLIPART",
             "empty": "N",
             "hiddenFlag": "false",
@@ -1034,8 +1022,7 @@
           {
             "id": "5001115812",
             "parentId": "5001115811",
-            "categoryName": "Borders",
-            "categoryList": [],
+            "title": "Borders",
             "categoryType": "CLIPART",
             "empty": "N",
             "hiddenFlag": "false",
@@ -1048,8 +1035,7 @@
           {
             "id": "5001115817",
             "parentId": "5001115811",
-            "categoryName": "Chronological",
-            "categoryList": [],
+            "title": "Chronological",
             "categoryType": "CLIPART",
             "empty": "N",
             "hiddenFlag": "false",
@@ -1062,8 +1048,7 @@
           {
             "id": "5001115818",
             "parentId": "5001115811",
-            "categoryName": "Class Of",
-            "categoryList": [],
+            "title": "Class Of",
             "categoryType": "CLIPART",
             "empty": "N",
             "hiddenFlag": "false",
@@ -1076,8 +1061,7 @@
           {
             "id": "5001115839",
             "parentId": "5001115811",
-            "categoryName": "Cover-to-Cover",
-            "categoryList": [],
+            "title": "Cover-to-Cover",
             "categoryType": "CLIPART",
             "empty": "N",
             "hiddenFlag": "false",
@@ -1090,8 +1074,7 @@
           {
             "id": "5001115819",
             "parentId": "5001115811",
-            "categoryName": "Cover",
-            "categoryList": [],
+            "title": "Cover",
             "categoryType": "CLIPART",
             "empty": "N",
             "hiddenFlag": "false",
@@ -1104,8 +1087,7 @@
           {
             "id": "5001115820",
             "parentId": "5001115811",
-            "categoryName": "Division",
-            "categoryList": [],
+            "title": "Division",
             "categoryType": "CLIPART",
             "empty": "N",
             "hiddenFlag": "false",
@@ -1118,8 +1100,7 @@
           {
             "id": "5001115821",
             "parentId": "5001115811",
-            "categoryName": "Environmental",
-            "categoryList": [],
+            "title": "Environmental",
             "categoryType": "CLIPART",
             "empty": "N",
             "hiddenFlag": "false",
@@ -1132,8 +1113,7 @@
           {
             "id": "5001115841",
             "parentId": "5001115811",
-            "categoryName": "Extended Edition",
-            "categoryList": [],
+            "title": "Extended Edition",
             "categoryType": "CLIPART",
             "empty": "N",
             "hiddenFlag": "false",
@@ -1146,8 +1126,7 @@
           {
             "id": "5001115822",
             "parentId": "5001115811",
-            "categoryName": "Folios",
-            "categoryList": [],
+            "title": "Folios",
             "categoryType": "CLIPART",
             "empty": "N",
             "hiddenFlag": "false",
@@ -1160,8 +1139,7 @@
           {
             "id": "5001115823",
             "parentId": "5001115811",
-            "categoryName": "Food",
-            "categoryList": [],
+            "title": "Food",
             "categoryType": "CLIPART",
             "empty": "N",
             "hiddenFlag": "false",
@@ -1174,8 +1152,7 @@
           {
             "id": "5001115824",
             "parentId": "5001115811",
-            "categoryName": "French",
-            "categoryList": [],
+            "title": "French",
             "categoryType": "CLIPART",
             "empty": "N",
             "hiddenFlag": "false",
@@ -1188,8 +1165,7 @@
           {
             "id": "5001115825",
             "parentId": "5001115811",
-            "categoryName": "Graduation",
-            "categoryList": [],
+            "title": "Graduation",
             "categoryType": "CLIPART",
             "empty": "N",
             "hiddenFlag": "false",
@@ -1202,8 +1178,7 @@
           {
             "id": "5001115826",
             "parentId": "5001115811",
-            "categoryName": "Headlines",
-            "categoryList": [],
+            "title": "Headlines",
             "categoryType": "CLIPART",
             "empty": "N",
             "hiddenFlag": "false",
@@ -1216,8 +1191,7 @@
           {
             "id": "5001115827",
             "parentId": "5001115811",
-            "categoryName": "Holidays",
-            "categoryList": [],
+            "title": "Holidays",
             "categoryType": "CLIPART",
             "empty": "N",
             "hiddenFlag": "false",
@@ -1230,8 +1204,7 @@
           {
             "id": "5001115849",
             "parentId": "5001115811",
-            "categoryName": "Infographics & Icons",
-            "categoryList": [],
+            "title": "Infographics & Icons",
             "categoryType": "CLIPART",
             "empty": "N",
             "hiddenFlag": "false",
@@ -1244,8 +1217,7 @@
           {
             "id": "5001115852",
             "parentId": "5001115811",
-            "categoryName": "Lines & Borders",
-            "categoryList": [],
+            "title": "Lines & Borders",
             "categoryType": "CLIPART",
             "empty": "N",
             "hiddenFlag": "false",
@@ -1258,8 +1230,7 @@
           {
             "id": "5001115828",
             "parentId": "5001115811",
-            "categoryName": "Mascots",
-            "categoryList": [],
+            "title": "Mascots",
             "categoryType": "CLIPART",
             "empty": "N",
             "hiddenFlag": "false",
@@ -1272,8 +1243,7 @@
           {
             "id": "5001115829",
             "parentId": "5001115811",
-            "categoryName": "Miscellaneous",
-            "categoryList": [],
+            "title": "Miscellaneous",
             "categoryType": "CLIPART",
             "empty": "N",
             "hiddenFlag": "false",
@@ -1286,8 +1256,7 @@
           {
             "id": "5001115830",
             "parentId": "5001115811",
-            "categoryName": "No Photo",
-            "categoryList": [],
+            "title": "No Photo",
             "categoryType": "CLIPART",
             "empty": "N",
             "hiddenFlag": "false",
@@ -1300,8 +1269,7 @@
           {
             "id": "5001115840",
             "parentId": "5001115811",
-            "categoryName": "Now & Wow",
-            "categoryList": [],
+            "title": "Now & Wow",
             "categoryType": "CLIPART",
             "empty": "N",
             "hiddenFlag": "false",
@@ -1314,8 +1282,7 @@
           {
             "id": "5001115831",
             "parentId": "5001115811",
-            "categoryName": "Patriotic",
-            "categoryList": [],
+            "title": "Patriotic",
             "categoryType": "CLIPART",
             "empty": "N",
             "hiddenFlag": "false",
@@ -1328,8 +1295,7 @@
           {
             "id": "5001115832",
             "parentId": "5001115811",
-            "categoryName": "Photo Frames",
-            "categoryList": [],
+            "title": "Photo Frames",
             "categoryType": "CLIPART",
             "empty": "N",
             "hiddenFlag": "false",
@@ -1342,8 +1308,7 @@
           {
             "id": "5001115833",
             "parentId": "5001115811",
-            "categoryName": "Religious",
-            "categoryList": [],
+            "title": "Religious",
             "categoryType": "CLIPART",
             "empty": "N",
             "hiddenFlag": "false",
@@ -1356,8 +1321,7 @@
           {
             "id": "5001115854",
             "parentId": "5001115811",
-            "categoryName": "Shapes & Arrows",
-            "categoryList": [],
+            "title": "Shapes & Arrows",
             "categoryType": "CLIPART",
             "empty": "N",
             "hiddenFlag": "false",
@@ -1370,8 +1334,7 @@
           {
             "id": "5001115834",
             "parentId": "5001115811",
-            "categoryName": "Spanish",
-            "categoryList": [],
+            "title": "Spanish",
             "categoryType": "CLIPART",
             "empty": "N",
             "hiddenFlag": "false",
@@ -1384,8 +1347,7 @@
           {
             "id": "5001115835",
             "parentId": "5001115811",
-            "categoryName": "Sports",
-            "categoryList": [],
+            "title": "Sports",
             "categoryType": "CLIPART",
             "empty": "N",
             "hiddenFlag": "false",
@@ -1398,8 +1360,7 @@
           {
             "id": "5001115856",
             "parentId": "5001115811",
-            "categoryName": "Stickers & Badges",
-            "categoryList": [],
+            "title": "Stickers & Badges",
             "categoryType": "CLIPART",
             "empty": "N",
             "hiddenFlag": "false",
@@ -1412,8 +1373,7 @@
           {
             "id": "5001115836",
             "parentId": "5001115811",
-            "categoryName": "Technology",
-            "categoryList": [],
+            "title": "Technology",
             "categoryType": "CLIPART",
             "empty": "N",
             "hiddenFlag": "false",
@@ -1426,8 +1386,7 @@
           {
             "id": "5001115837",
             "parentId": "5001115811",
-            "categoryName": "Word Art",
-            "categoryList": [],
+            "title": "Word Art",
             "categoryType": "CLIPART",
             "empty": "N",
             "hiddenFlag": "false",
@@ -1440,8 +1399,7 @@
           {
             "id": "5001115838",
             "parentId": "5001115811",
-            "categoryName": "World & Nature",
-            "categoryList": [],
+            "title": "World & Nature",
             "categoryType": "CLIPART",
             "empty": "N",
             "hiddenFlag": "false",
@@ -1454,8 +1412,7 @@
           {
             "id": "5001115843",
             "parentId": "5001115811",
-            "categoryName": "YearBook It!",
-            "categoryList": [],
+            "title": "YearBook It!",
             "categoryType": "CLIPART",
             "empty": "N",
             "hiddenFlag": "false",
