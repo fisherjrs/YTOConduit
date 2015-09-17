@@ -126,5 +126,12 @@ public class DefinitionsController {
 		
 		return jsonImageDefinition;
 	}
+    
+    @ResponseBody
+	@RequestMapping(value = "/intermediateupload.json")
+	public String intermediateUploadMethod(Model model) {
+    	String uploadResult = "{\"result\":345}";
+		return uploadResult;
+	}
 
 }
