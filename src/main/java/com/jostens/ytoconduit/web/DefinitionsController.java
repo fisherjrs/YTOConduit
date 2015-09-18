@@ -1,6 +1,8 @@
 package com.jostens.ytoconduit.web;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.util.List;
 
@@ -14,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.core.JsonFactory;
@@ -129,8 +132,30 @@ public class DefinitionsController {
     
     @ResponseBody
 	@RequestMapping(value = "/intermediateupload.json")
-	public String intermediateUploadMethod(Model model) {
+	public String intermediateUploadMethod(Model model,
+        @RequestParam(value="file", required=true) MultipartFile file,
+        @RequestParam(value="imageName", required=false, defaultValue="image001.jpg") String imageName,
+        @RequestParam(value="categoryId", required=false, defaultValue="2332") String categoryId,
+        @RequestParam(value="categoryName", required=false, defaultValue="ActivityD") String categoryName
+        ){
+    
     	String uploadResult = "{\"result\":345}";
+    	LOG.info("Upload details {}, {}, {}", imageName, categoryId, categoryName);
+     if (!file.isEmpty()) {
+        try {
+            byte[] bytes = file.getBytes();
+            BufferedOutputStream stream =
+                    new BufferedOutputStream(new FileOutputStream(new File("library\\omar.jpg")));
+            stream.write(bytes);
+            stream.close();
+            uploadResult = "{\"result\": \"You successfully uploaded.\"}";
+        } catch (Exception e) {
+        	uploadResult = "{\"result\": \"Your upload failed.\"}";
+        }
+    } else {
+    	uploadResult = "{\"result\": \"Your upload failed. File was empty.\"}";
+    }
+    	
 		return uploadResult;
 	}
 
