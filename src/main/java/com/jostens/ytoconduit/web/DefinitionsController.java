@@ -134,6 +134,7 @@ public class DefinitionsController {
 	@RequestMapping(value = "/intermediateupload.json")
 	public String intermediateUploadMethod(Model model,
         @RequestParam(value="file", required=true) MultipartFile file,
+        @RequestParam(value="designId", required=false, defaultValue="9") String designId,
         @RequestParam(value="imageName", required=false, defaultValue="image001.jpg") String imageName,
         @RequestParam(value="categoryId", required=false, defaultValue="2332") String categoryId,
         @RequestParam(value="categoryName", required=false, defaultValue="ActivityD") String categoryName
@@ -145,7 +146,7 @@ public class DefinitionsController {
         try {
             byte[] bytes = file.getBytes();
             BufferedOutputStream stream =
-                    new BufferedOutputStream(new FileOutputStream(new File("library\\omar.jpg")));
+                    new BufferedOutputStream(new FileOutputStream(new File("library\\" + imageName)));
             stream.write(bytes);
             stream.close();
             uploadResult = "{\"result\": \"You successfully uploaded.\"}";
