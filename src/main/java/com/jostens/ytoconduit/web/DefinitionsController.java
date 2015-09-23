@@ -4,6 +4,8 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -11,9 +13,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -73,6 +79,23 @@ public class DefinitionsController {
     	FileSystemResource fsr = new FileSystemResource("c:/dev/workspaces/sts.general/YTOConduit/src/main/resources/public/designDefinition.json");
 		return fsr;
 	}
+    
+    @RequestMapping(value = "/getdesignimage", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<InputStream> getDesignImage(String uri) {
+    	FileSystemResource fsr = new FileSystemResource("c:/dev/workspaces/sts.general/YTOConduit/library/Koala.jpg");
+    	ResponseEntity.BodyBuilder responseBody = ResponseEntity.ok();
+    	ResponseEntity<InputStream> response = null;
+    	try {
+    		responseBody.body(fsr.getInputStream());
+    		responseBody.contentLength(fsr.contentLength());
+    		response = ResponseEntity.ok().contentLength(fsr.contentLength()).contentType(MediaType.APPLICATION_OCTET_STREAM).body(fsr.getInputStream());
+    	}catch(IOException error) {
+    		LOG.info(error.getMessage());
+    	}
+    	
+        return response;
+    }
 	
 	@ResponseBody
 	@RequestMapping(value = "/getcategorydefinition.json")
@@ -149,12 +172,12 @@ public class DefinitionsController {
                     new BufferedOutputStream(new FileOutputStream(new File("library\\" + imageName)));
             stream.write(bytes);
             stream.close();
-            uploadResult = "{\"result\": \"You successfully uploaded.\"}";
+            uploadResult = "{\"result\": \"Upload complete.\"}";
         } catch (Exception e) {
-        	uploadResult = "{\"result\": \"Your upload failed.\"}";
+        	uploadResult = "{\"result\": \"Upload failed.\"}";
         }
     } else {
-    	uploadResult = "{\"result\": \"Your upload failed. File was empty.\"}";
+    	uploadResult = "{\"result\": \"Upload failed. File was empty.\"}";
     }
     	
 		return uploadResult;
