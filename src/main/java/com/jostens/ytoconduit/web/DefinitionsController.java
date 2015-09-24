@@ -59,6 +59,11 @@ public class DefinitionsController {
         model.addAttribute("designDefinition", designDefinition);
         return "greeting";
     }
+    
+    @RequestMapping("/error")
+    public String errorMethod(Model model) {
+        return "error";
+    }
 	
 	@RequestMapping("/greeting")
     public String greeting(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
@@ -89,7 +94,7 @@ public class DefinitionsController {
     	try {
     		responseBody.body(fsr.getInputStream());
     		responseBody.contentLength(fsr.contentLength());
-    		response = ResponseEntity.ok().contentLength(fsr.contentLength()).contentType(MediaType.APPLICATION_OCTET_STREAM).body(fsr.getInputStream());
+    		response = ResponseEntity.ok().contentLength(fsr.contentLength()).contentType(MediaType.IMAGE_JPEG).body(fsr.getInputStream());
     	}catch(IOException error) {
     		LOG.info(error.getMessage());
     	}
