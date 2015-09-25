@@ -1,17 +1,22 @@
 package com.jostens.ytoconduit.web;
 
 import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
 
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.MediaType;
@@ -81,26 +86,51 @@ public class DefinitionsController {
     @ResponseBody
 	@RequestMapping(value = "/getdesigndefinitionoffline.json")
 	public FileSystemResource getDesignDefinitionOffline(Model model, @RequestParam(required = true) String designId) {
-    	FileSystemResource fsr = new FileSystemResource("c:/dev/workspaces/sts.general/YTOConduit/src/main/resources/public/designDefinition.json");
-		return fsr;
+    	try {
+    		FileSystemResource fsr = new FileSystemResource("c:/dev/workspaces/sts.general/YTOConduit/src/main/resources/public/designDefinition.json");
+    		LOG.info("content length :: {} ", fsr.contentLength());
+    		return fsr;
+    	}catch(IOException error) {
+    		LOG.info("Error reading design definition offline {}", error);
+    	}
+    	return null;	
 	}
     
-    @RequestMapping(value = "/getdesignimage", method = RequestMethod.GET)
+    @RequestMapping(value = "/getdesignimage")
     @ResponseBody
-    public ResponseEntity<InputStream> getDesignImage(String uri) {
-    	FileSystemResource fsr = new FileSystemResource("c:/dev/workspaces/sts.general/YTOConduit/library/Koala.jpg");
-    	ResponseEntity.BodyBuilder responseBody = ResponseEntity.ok();
-    	ResponseEntity<InputStream> response = null;
-    	try {
-    		responseBody.body(fsr.getInputStream());
-    		responseBody.contentLength(fsr.contentLength());
-    		response = ResponseEntity.ok().contentLength(fsr.contentLength()).contentType(MediaType.IMAGE_JPEG).body(fsr.getInputStream());
+    public ResponseEntity<ByteArrayResource> getDesignImage(String uri) {
+    	try {    		
+    		FileInputStream in = new FileInputStream("c:/dev/workspaces/sts.general/YTOConduit/library/" + uri);
+    		ByteArrayResource bar = new ByteArrayResource(IOUtils.toByteArray(in));
+    		LOG.info("content length :: {} ", bar.contentLength());
+    		return ResponseEntity.ok().contentLength(bar.contentLength()).contentType(MediaType.IMAGE_JPEG).body(bar);
     	}catch(IOException error) {
-    		LOG.info(error.getMessage());
+    		LOG.info("Error getting design image. Return default image. {}", error);
+    		try {
+	    		FileInputStream in2 = new FileInputStream("c:/dev/workspaces/sts.general/YTOConduit/library/Lighthouse.jpg");
+	    		ByteArrayResource bar2 = new ByteArrayResource(IOUtils.toByteArray(in2));
+	    		LOG.info("content length :: {} ", bar2.contentLength());
+	    		return ResponseEntity.ok().contentLength(bar2.contentLength()).contentType(MediaType.IMAGE_JPEG).body(bar2);
+	    	}catch(IOException error2){
+    			//We can't even load the default image. This plan backfired.
+    			return null;
+    		}
     	}
-    	
-        return response;
     }
+    /*
+    @RequestMapping(value = "/getdesignimage2")
+    @ResponseBody
+    public ResponseEntity<FileSystemResource> getDesignImage2(String uri) {
+    	try {
+    		FileSystemResource fsr = new FileSystemResource("c:/dev/workspaces/sts.general/YTOConduit/library/Lighthouse.jpg");
+    		LOG.info("content length :: {} ", fsr.contentLength());
+    		return ResponseEntity.ok().contentLength(fsr.contentLength()).contentType(MediaType.IMAGE_JPEG).body(fsr);
+    	}catch(IOException error) {
+    		LOG.info("Error reading design definition offline {}", error);
+    	}
+    	return null;
+    }
+ 	*/
 	
 	@ResponseBody
 	@RequestMapping(value = "/getcategorydefinition.json")

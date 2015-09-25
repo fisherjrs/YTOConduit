@@ -58,6 +58,7 @@ public class YTOConfig extends AbstractConfiguration {
 		Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder();
 		builder.indentOutput(true);
 		builder.dateFormat(new SimpleDateFormat("yyyy-MM-dd"));
+		builder.failOnEmptyBeans(false);
 		return builder;
 	}
 	
