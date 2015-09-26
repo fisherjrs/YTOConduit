@@ -9,9 +9,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.http.client.utils.URIBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +39,7 @@ import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.jostens.config.YTOConfig;
+import com.jostens.ytoconduit.model.ImageUploadResult;
 import com.jostens.ytoconduit.model.View;
 import com.jostens.ytoconduit.model.YTODesignDefinition;
 import com.jostens.ytoconduit.model.YTOImageDefinition;
@@ -98,9 +102,9 @@ public class DefinitionsController {
     
     @RequestMapping(value = "/getdesignimage")
     @ResponseBody
-    public ResponseEntity<ByteArrayResource> getDesignImage(String uri) {
+    public ResponseEntity<ByteArrayResource> getDesignImage(@RequestParam(required=true) String path) {
     	try {    		
-    		FileInputStream in = new FileInputStream("c:/dev/workspaces/sts.general/YTOConduit/library/" + uri);
+    		FileInputStream in = new FileInputStream(path);
     		ByteArrayResource bar = new ByteArrayResource(IOUtils.toByteArray(in));
     		LOG.info("content length :: {} ", bar.contentLength());
     		return ResponseEntity.ok().contentLength(bar.contentLength()).contentType(MediaType.IMAGE_JPEG).body(bar);
@@ -138,31 +142,7 @@ public class DefinitionsController {
 		
 		FileSystemResource fsr = new FileSystemResource("c:/dev/workspaces/sts.general/YTOConduit/src/main/resources/public/categories.json");
 		return fsr;
-		/*
-		JsonFactory jsonFactory = new JsonFactory();
-		
-		try {
-			File f = new File("C:/dev/workspaces/sts3.6.4/YTOConduit/src/main/resources/public/categories.json");
-			return f;
-			//f.isFile()
-		}catch (Exception e){
-			LOG.info("Error reading file.");
-		}
-		try {
-			JsonParser jp = jsonFactory.createParser(new File("C:/dev/workspaces/sts3.6.4/YTOConduit/src/main/resources/public/categories.json"));
-			LOG.info("Text length {}", String.valueOf(jp.getTextLength()));
-			while (!jp.isClosed()) {
-			    // read the next element
-			    JsonToken token = jp.nextToken();
-			    // if the call to nextToken returns null, the end of the file has been reached
-			    if (token == null)
-			        break;			 
-			}
-			return jp.getValueAsString();
-		} catch (Exception e) {
-			return "Difficult reading json file";
-		}
-		*/
+	
 	}
 	
 	@JsonView(View.ImageList.class)
@@ -190,30 +170,79 @@ public class DefinitionsController {
     
     @ResponseBody
 	@RequestMapping(value = "/intermediateupload.json")
-	public String intermediateUploadMethod(Model model,
+	public ImageUploadResult intermediateUploadMethod(Model model,
         @RequestParam(value="file", required=true) MultipartFile file,
         @RequestParam(value="designId", required=false, defaultValue="9") String designId,
         @RequestParam(value="imageName", required=false, defaultValue="image001.jpg") String imageName,
-        @RequestParam(value="categoryId", required=false, defaultValue="2332") String categoryId,
-        @RequestParam(value="categoryName", required=false, defaultValue="ActivityD") String categoryName
+        @RequestParam(value="categoryId", required=false, defaultValue="2332") String categoryId
         ){
     
-    	String uploadResult = "{\"result\":345}";
-    	LOG.info("Upload details {}, {}, {}", imageName, categoryId, categoryName);
-     if (!file.isEmpty()) {
-        try {
+    	ImageUploadResult uploadResult = new ImageUploadResult();
+    	uploadResult.setMessage("noresult");
+    	
+    	//Create path to new upload location.
+    	LOG.info("Upload details {}, {}, {}", designId, categoryId, imageName);
+    	StringBuilder path = new StringBuilder();
+    	path.append("library\\");
+    	path.append(designId);
+    	path.append("\\");
+    	path.append(categoryId);    	
+
+    	File storage = new File(path.toString());
+    	
+    	//Create directories. Bail if we can't.
+    	if(!storage.exists()) {
+			try {
+				storage.mkdirs();				
+			}catch(SecurityException error) {
+				uploadResult.setStatus(Boolean.FALSE);
+				uploadResult.setMessage("Image upload failed. Could not create directory to store file.");
+				uploadResult.setErrorMessage(error.getMessage());
+				return uploadResult;
+			}
+    	}
+    	
+    	//Once the directory is created, add the image name to the path.
+		path.append("\\");
+    	path.append(imageName);
+    	
+    	//Create uri that will be added to upload result so we can reference the image later. Bail if we can't create it.
+    	URI uri = null;
+    	try {
+    		uri =  new URIBuilder().setHost("localhost")
+    				.setScheme("http")
+    				.setPort(9000)
+    				.setPath("/conduitservices/getdesignimage")
+    				.setParameter("path", path.toString())
+    				.build();
+    	} catch(URISyntaxException error) {
+    		uploadResult.setStatus(Boolean.FALSE);
+    		uploadResult.setMessage("Image was not uploaded. Could not build locator");
+    		uploadResult.setErrorMessage(error.getMessage());
+    		return uploadResult;
+    	}
+    	
+    	if(file.isEmpty()) {
+    		uploadResult.setStatus(Boolean.FALSE);
+	        uploadResult.setMessage("Upload failed. File was empty");
+	        return uploadResult;
+    	}
+    	
+    	//Write the file to disk. Populate result.
+    	try {
             byte[] bytes = file.getBytes();
-            BufferedOutputStream stream =
-                    new BufferedOutputStream(new FileOutputStream(new File("library\\" + imageName)));
+            BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(path.toString())));
             stream.write(bytes);
             stream.close();
-            uploadResult = "{\"result\": \"Upload complete.\"}";
-        } catch (Exception e) {
-        	uploadResult = "{\"result\": \"Upload failed.\"}";
-        }
-    } else {
-    	uploadResult = "{\"result\": \"Upload failed. File was empty.\"}";
-    }
+            uploadResult.setStatus(Boolean.TRUE);
+            uploadResult.setMessage("Upload complete.");
+            uploadResult.setUrl(uri.toString());
+            uploadResult.setCdnUrl(uri.toString());
+        } catch (IOException e) {
+        	 uploadResult.setStatus(Boolean.FALSE);
+             uploadResult.setMessage("Upload failed.");
+             uploadResult.setErrorMessage(e.getMessage());
+        }     
     	
 		return uploadResult;
 	}

@@ -10,6 +10,7 @@ public class View {
 	
 	public interface DefinitionSummary{}
 	public interface ImageList{}
+	public interface ImageUploadSummary{};
 	
 
 }
