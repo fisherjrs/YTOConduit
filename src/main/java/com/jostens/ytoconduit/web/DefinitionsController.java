@@ -1,5 +1,6 @@
 package com.jostens.ytoconduit.web;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -13,6 +14,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.client.utils.URIBuilder;
 import org.slf4j.Logger;
@@ -26,6 +28,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,6 +42,7 @@ import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.jostens.config.YTOConfig;
+import com.jostens.ytoconduit.model.DesignPublishResult;
 import com.jostens.ytoconduit.model.ImageUploadResult;
 import com.jostens.ytoconduit.model.View;
 import com.jostens.ytoconduit.model.YTODesignDefinition;
@@ -99,6 +103,40 @@ public class DefinitionsController {
     	}
     	return null;	
 	}
+    
+    @ResponseBody
+    @RequestMapping(value = "/publishdesigndefinition.json", method = RequestMethod.POST)
+    public DesignPublishResult publishDesignDefinition(Model model, @RequestBody String designDefinition) {
+    	LOG.info("publish the design");
+    	DesignPublishResult result = new DesignPublishResult();
+    	result.setStatus(Boolean.TRUE);
+    	result.setMessage("The design definition was published. The previous version was backed up.");
+    	
+    	//1. rename current defintion file
+    	File currentDefinition = new File("c:/dev/workspaces/sts.general/YTOConduit/src/main/resources/public/designDefinition.json");
+    	boolean renameWorked = currentDefinition.renameTo(new File("c:/dev/workspaces/sts.general/YTOConduit/src/main/resources/public/designDefinition_version01.json"));
+    	if(!renameWorked) {
+    		result.setStatus(Boolean.FALSE);
+    		result.setMessage("Could not publish design definition.");
+    		result.setErrorMessage("Could not rename original version of design definition.");
+    		return result;
+    	}
+
+    	File newDefinition = new File("c:/dev/workspaces/sts.general/YTOConduit/src/main/resources/public/designDefinition.json");
+    	try {
+    		FileUtils.writeStringToFile(newDefinition, designDefinition);    	
+    	} catch(IOException error) {
+    		result.setStatus(Boolean.FALSE);
+    		result.setMessage("Could not publish design definition.");
+    		result.setErrorMessage(error.getMessage());
+    		return result;
+    	}
+    	
+    	return result;
+    }
+    
+    
+    
     
     @RequestMapping(value = "/getdesignimage")
     @ResponseBody
@@ -168,6 +206,7 @@ public class DefinitionsController {
 		return jsonImageDefinition;
 	}
     
+    @JsonView(View.ImageUploadSummary.class)
     @ResponseBody
 	@RequestMapping(value = "/intermediateupload.json")
 	public ImageUploadResult intermediateUploadMethod(Model model,
