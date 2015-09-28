@@ -113,14 +113,14 @@ public class DefinitionsController {
     	result.setMessage("The design definition was published. The previous version was backed up.");
     	
     	//1. rename current defintion file
-    	File currentDefinition = new File("c:/dev/workspaces/sts.general/YTOConduit/src/main/resources/public/designDefinition.json");
-    	boolean renameWorked = currentDefinition.renameTo(new File("c:/dev/workspaces/sts.general/YTOConduit/src/main/resources/public/designDefinition_version01.json"));
-    	if(!renameWorked) {
-    		result.setStatus(Boolean.FALSE);
-    		result.setMessage("Could not publish design definition.");
-    		result.setErrorMessage("Could not rename original version of design definition.");
-    		return result;
-    	}
+//    	File currentDefinition = new File("c:/dev/workspaces/sts.general/YTOConduit/src/main/resources/public/designDefinition.json");
+//    	boolean renameWorked = currentDefinition.renameTo(new File("c:/dev/workspaces/sts.general/YTOConduit/src/main/resources/public/designDefinition_version02.json"));
+//    	if(!renameWorked) {
+//    		result.setStatus(Boolean.FALSE);
+//    		result.setMessage("Could not publish design definition.");
+//    		result.setErrorMessage("Could not rename original version of design definition.");
+//    		return result;
+//    	}
 
     	File newDefinition = new File("c:/dev/workspaces/sts.general/YTOConduit/src/main/resources/public/designDefinition.json");
     	try {
