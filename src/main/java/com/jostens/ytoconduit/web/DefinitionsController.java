@@ -95,7 +95,7 @@ public class DefinitionsController {
 	@RequestMapping(value = "/getdesigndefinitionoffline.json")
 	public FileSystemResource getDesignDefinitionOffline(Model model, @RequestParam(required = true) String designId) {
     	try {
-    		FileSystemResource fsr = new FileSystemResource("c:/dev/workspaces/sts3.6.4/YTOConduit/src/main/resources/public/designDefinition.json");
+    		FileSystemResource fsr = new FileSystemResource("c:/dev/workspaces/sts.general/YTOConduit/src/main/resources/public/designDefinition.json");
     		LOG.info("content length :: {} ", fsr.contentLength());
     		return fsr;
     	}catch(IOException error) {
